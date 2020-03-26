@@ -72,11 +72,7 @@ export default function NewIncident(){
 
                     <button className="button" type="submit">Cadastrar</button>
                 </form>
-
             </div>
-
         </div>
-
-
     )
 }
