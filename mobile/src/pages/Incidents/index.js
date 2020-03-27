@@ -37,19 +37,21 @@ export default function Incidents(){
 
         setLoading(true);
         
-        const response = await api.get(`incidents?pages=${page}`);
+        const response = await api.get(`incidents`, {
+            params: { page }
+        });
         
 
-        setIncidents([... incidents, ...response.data]);
+        setIncidents([... incidents, ... response.data]);
         setTotal(response.headers['x-total-count']);
-        setPages(page + 1);
+        setPage(page + 1);
         setLoading(false);
-        // console.log('EEEEEEEEEEEEEEEEEE CARAMBAAAAAAA')
+        console.log('Numero de paginas: ', page, 'total: ', total)
     }
 
     useEffect(() => {
         loadIncidents();
-    })
+    }, [])
 
 
     return (
