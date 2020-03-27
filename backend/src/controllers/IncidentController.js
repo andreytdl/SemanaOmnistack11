@@ -23,9 +23,9 @@ module.exports = {
         const [count] = await connectionDB('incidents').count();
 
         //Retorna o total de incidentes no header da resposta
-        res.header('X-Total-Count', count['count(*)']);
-
-
+        //9 é a gambiarra para numero de incidents que estão na tabela SQLite que não possuem ongs ligadas 
+        res.header('X-Total-Count', count['count(*)'] - 9);
+        
         const incidents = await connectionDB('incidents')
         .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
         .limit(5)
@@ -37,8 +37,7 @@ module.exports = {
             'ongs.whatsapp',
             'ongs.city',
             'ongs.uf'
-            ]);
-
+        ]);
 
         return res.json(incidents);
     },

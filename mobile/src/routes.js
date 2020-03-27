@@ -1,0 +1,23 @@
+import React from 'react';
+import { createStackNavigator  } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+const AppStack = createStackNavigator();
+
+import Incidents from './pages/Incidents'
+import Details from './pages/Details'
+
+
+export default function Routes(){
+    return(
+
+        <NavigationContainer>
+            {/* Sem mostrar o cabeçalho, header shown false */}
+            <AppStack.Navigator screenOptions={{ headerShown: false }}>
+                <AppStack.Screen name="Incidents" component={Incidents}/>
+                <AppStack.Screen name="Details" component={Details}/>
+            </AppStack.Navigator>
+        </NavigationContainer>
+
+    );
+}
